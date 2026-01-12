@@ -1,0 +1,29 @@
+import UIKit
+import WebKit
+
+class ViewController: UIViewController {
+
+    var webView: WKWebView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Δημιουργία WebView
+        webView = WKWebView(frame: view.bounds)
+        webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+        view.addSubview(webView)
+
+        // URL του Arduino
+        let urlString = "http://192.168.1.6/"
+        if let url = URL(string: urlString) {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
+    }
+
+    // Απόκρυψη status bar (full screen)
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+}
